@@ -7,8 +7,8 @@ import (
 	"log"
 	"os/exec"
 	"os"
-    "strings"
-    "bytes"
+  "strings"
+  "bytes"
 )
 
 func main() {

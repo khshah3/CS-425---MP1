@@ -1,7 +1,6 @@
 package main
 
 import (
-    "fmt"
     "log"
     "net"
     "encoding/gob"
@@ -12,16 +11,17 @@ type P struct {
 }
 
 func main() {
-    fmt.Println("start client");
+
+    log.Println("Starting client");
     conn, err := net.Dial("tcp", "localhost:8080")
     if err != nil {
         log.Fatal("Connection error", err)
     }
     encoder := gob.NewEncoder(conn)
     p := &P{1, 2}
-    fmt.Println(p);
+    log.Println(p);
     encoder.Encode(p)
     conn.Close()
-    fmt.Println("done");
+    log.Println("done");
 }
 
