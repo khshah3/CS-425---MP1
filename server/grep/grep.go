@@ -6,7 +6,7 @@ import (
 
 // The arguments to a remote call of grep
 type Args struct {
-  Key, Val string
+  Filepath, Key, Val string
 }
 
 // The structure of grep's return value
@@ -19,7 +19,7 @@ type Grep int
 
 // The method to actually grep local logs and return any matches
 func (g *Grep) Search(args *Args, reply *Reply) error {
-  log.Printf("Search query %s:%s", args.Key, args.Val)
+  log.Printf("search:file=%s, query=%s:%s", args.Filepath, args.Key, args.Val)
   reply.Val = args.Key
   return nil
 }

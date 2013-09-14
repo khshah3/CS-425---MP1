@@ -13,9 +13,12 @@ func main() {
     log.Fatal("dialing:", err)
   }
 
-  // Make the remote call (this is just a test)
-  args := &grep.Args{"hello", "world"}
+
+  // Give grep the path to the log file
+  defaultPath := "/home/martin/school/cs425/mp1/sample_logs/machine.1.log"
+  args := &grep.Args{defaultPath, "they", "idea"}
   var reply grep.Reply
+  // Make the remote call (this is just a test)
   err = client.Call("Grep.Search", args, &reply)
   if err != nil {
     log.Fatal("grep search error:", err)

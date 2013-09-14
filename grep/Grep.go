@@ -11,6 +11,8 @@ import (
   "regexp"
 )
 
+// This is an OLD test for making a grep system call
+// This code shouldn't actually be used for anything
 
 func main() {
   log.Println("Start grep test")
