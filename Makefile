@@ -5,3 +5,6 @@ serverbuild:
 
 clientbuild:
 	go build dgrep.go
+
+clean:
+	rm grepserver dgrep
