@@ -4,6 +4,8 @@ CS425 MP1
 
 ## Building
 
+You'll need [Go](http://golang.org) to build this project.
+
 Call `make` in root directory. 
 There should be `dgrep` and `grepserver` executables afterwards.
 
