@@ -9,7 +9,7 @@ import (
   "os"
 )
 
-func startServer(port, logfile string) {
+func startServer(port string) {
   // Expose the grep functionality over HTTP 
   myGrep := new(grep.Grep)
   rpc.Register(myGrep)
@@ -31,9 +31,9 @@ func startServer(port, logfile string) {
 // This server uses net/rpc magic to expose an object's methods over tcp
 // The client can simply call the method as if it were local (almost)
 func main() {
-  if len(os.Args) != 3 {
-    log.Panic("args:", "<port> <logfile>")
+  if len(os.Args) != 2 {
+    log.Panic("args:", "<port>")
   }
-  port, logfile := os.Args[1], os.Args[2]
-  startServer(port, logfile)
+  port := os.Args[1]
+  startServer(port)
 }

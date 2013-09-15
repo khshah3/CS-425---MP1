@@ -6,6 +6,7 @@ import(
   "./server/grep"
   "./serverlist"
   "os"
+  "fmt"
 )
 
 func remoteGrep(serverAddress, logPath, key, val string) {
@@ -23,7 +24,8 @@ func remoteGrep(serverAddress, logPath, key, val string) {
   if err != nil {
     log.Fatal("grep search error:", err)
   }
-  log.Printf("Search: %s:%s ==> %s", args.Key, args.Val, reply.Val)
+  log.Printf("Search: %s:%s", args.Key, args.Val)
+  fmt.Println(reply.Val)
 }
 
 func main() {
