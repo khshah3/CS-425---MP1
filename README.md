@@ -1,9 +1,20 @@
 CS425 MP1
 =========
 
+
 ## Building
+
 Call 'make' in root directory. 
-There should be 'dgrep' and 'grepserver' executables.
+There should be 'dgrep' and 'grepserver' executables afterwards.
+
+
+## Configuration
+
+Edit 'serverconfig.cfg' in the project's root directory to add/remove servers.
+The dgrep client reads this file each time it is executed to get the list of
+servers it should query. The file has one server on each line:
+    <serverAdress:port> <log location>
+
 
 ## Running
 

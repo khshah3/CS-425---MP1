@@ -37,7 +37,7 @@ func main() {
   keyQuery, valQuery := os.Args[1], os.Args[2]
 
   // Get the configuration for all the servers running dgrep
-  serverList := serverlist.FromFile("serverlist/testconfig.cfg")
+  serverList := serverlist.FromFile("serverconfig.cfg")
   for i := range *serverList{
     //log.Println((*serverList)[server])
     server := (*serverList)[i]
