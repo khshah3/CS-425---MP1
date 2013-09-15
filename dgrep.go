@@ -7,9 +7,13 @@ import(
   "./serverlist"
   "os"
   "fmt"
+  "sync"
 )
 
-func remoteGrep(serverAddress, logPath, key, val string) {
+func remoteGrep(serverAddress, logPath, key, val string, wg *sync.WaitGroup) {
+  // Tell the WaitGroup we're done after the function returns
+  defer wg.Done()
+
   log.Println("dialing server:", serverAddress)
   client, err := rpc.DialHTTP("tcp", serverAddress)
   if err != nil {
@@ -28,6 +32,7 @@ func remoteGrep(serverAddress, logPath, key, val string) {
   fmt.Print(reply.Val)
 }
 
+
 func main() {
   // Make sure we have the right number of arguments
   if len(os.Args) != 3 {
@@ -38,9 +43,12 @@ func main() {
 
   // Get the configuration for all the servers running dgrep
   serverList := serverlist.FromFile("serverconfig.cfg")
+  var wg sync.WaitGroup
   for i := range *serverList{
-    //log.Println((*serverList)[server])
     server := (*serverList)[i]
-    remoteGrep(server.Address, server.Logfile, keyQuery, valQuery)
+    wg.Add(1)
+    go remoteGrep(server.Address, server.Logfile, keyQuery, valQuery, &wg)
   }
+  wg.Wait()
+  log.Println("Done:", "All servers complete.")
 }
