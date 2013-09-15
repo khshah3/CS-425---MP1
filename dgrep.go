@@ -25,7 +25,7 @@ func remoteGrep(serverAddress, logPath, key, val string) {
     log.Fatal("grep search error:", err)
   }
   log.Printf("Search: %s:%s", args.Key, args.Val)
-  fmt.Println(reply.Val)
+  fmt.Print(reply.Val)
 }
 
 func main() {
