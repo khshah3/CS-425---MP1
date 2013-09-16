@@ -23,11 +23,10 @@ type Grep int
 // The method to actually grep local logs and return any matches
 func (g *Grep) Search(args *Args, reply *Reply) error {
   log.Printf("search:file=%s, query=%s:%s", args.Filepath, args.Key, args.Val)
-  reply.Val = args.Key
 
   // Build the grep regex to separate key/val searches (':' delimeter)
   query := fmt.Sprintf("^.*%s.*:.*%s.*$", args.Key, args.Val)
-  cmd := exec.Command("grep", query, args.Filepath)
+  cmd := exec.Command("grep", "-r", query, args.Filepath)
 
   // Get the command's stdout pipe so we can use the results of the call
   stdout, err := cmd.StdoutPipe()
@@ -44,7 +43,7 @@ func (g *Grep) Search(args *Args, reply *Reply) error {
   result, err := ioutil.ReadAll(stdout)
   reply.Val = string(result)
 
-  log.Println("results:", "sending")
+  log.Println("Finished:", "Sending results.")
 
   return nil
 }
