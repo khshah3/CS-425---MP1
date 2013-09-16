@@ -15,7 +15,8 @@ func RemoteGrep(serverAddress, logPath, key, val string, wg *sync.WaitGroup) {
   log.Println("dialing server:", serverAddress)
   client, err := rpc.DialHTTP("tcp", serverAddress)
   if err != nil {
-    log.Fatal("dialing:", err)
+    log.Println("dialing:", err)
+    return
   }
 
   // Give grep the path to the log file
