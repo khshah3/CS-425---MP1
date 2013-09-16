@@ -22,7 +22,8 @@ func main(){
     scanner.Split(bufio.ScanWords)
     logSize := logs.Size()
     count := 0
-    size := 0
+    var size int64
+    size = 0
     for size < logSize {
         
         random_count := ( (rand.Int() % 9) + 2 )
@@ -43,7 +44,7 @@ func main(){
             }
         }
         count = 0
-        size := logs.Log(key , value.String())
+        size = logs.Log(key , value.String())
         fmt.Println(size)
         value.Reset()
     }

@@ -11,7 +11,7 @@ import (
 
 type Logger struct {
  	key ,value , filename string
-    size int
+    size int64
 }
 
 func (logs *Logger) GetLogFileName(filename string){
@@ -24,12 +24,12 @@ func (logs *Logger) GetLogFileName(filename string){
   fields := strings.Split(scanner.Text(), " ")
   logs.filename = fields[0]
   size ,err := strconv.Atoi(fields[1])
-  logs.size = size
+  logs.size = int64(size)
   file.Close()
 
 }
 
-func (logs *Logger) Size()(size int){
+func (logs *Logger) Size()(size int64){
         return logs.size
     }
 
