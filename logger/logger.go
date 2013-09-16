@@ -5,33 +5,31 @@ import (
     "bufio"
     "log"
     "os"
-    "strings"
-    "strconv"
 )
 
 type Logger struct {
  	key ,value , filename string
-    size int64
 }
 
-func (logs *Logger) GetLogFileName(filename string){
+func (logs *Logger) InitializeLogFileName(filename string){
   file, err := os.Open(filename)
   if err != nil {
     log.Fatal(err)
   }
   scanner := bufio.NewScanner(file)
   scanner.Scan()
-  fields := strings.Split(scanner.Text(), " ")
-  logs.filename = fields[0]
-  size ,err := strconv.Atoi(fields[1])
-  logs.size = int64(size)
+  logs.filename = scanner.Text()
   file.Close()
 
 }
 
-func (logs *Logger) Size()(size int64){
-        return logs.size
-    }
+func (logs *Logger) SetLogFileName(filename string) {
+    logs.filename = filename
+}
+
+func (logs *Logger) GetLogFileName() (string) {
+    return logs.filename
+}
 
 func (logs *Logger) Log(key string , value string)(int64){
 
