@@ -3,6 +3,7 @@ package logger
 import (
     "log"
     "os"
+    "bufio"
 )
 
 type Logger struct {
