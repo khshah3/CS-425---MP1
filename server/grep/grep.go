@@ -26,7 +26,8 @@ func (g *Grep) Search(args *Args, reply *Reply) error {
 
   // Build the grep regex to separate key/val searches (':' delimeter)
   query := fmt.Sprintf("^.*%s.*:.*%s.*$", args.Key, args.Val)
-  cmd := exec.Command("grep", "-r", query, args.Filepath)
+  fmt.Println(query)
+  cmd := exec.Command("sh" , "-c" , "grep -r "+ query + " " + args.Filepath)
 
   // Get the command's stdout pipe so we can use the results of the call
   stdout, err := cmd.StdoutPipe()
